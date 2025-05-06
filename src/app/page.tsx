@@ -10,8 +10,8 @@ export default function Home() {
     const toggleComponent = () => setShowBuyer(!showBuyer);
 
     return (
-        <div className="h-full w-full grid justify-items-center">
-            <div className="relative h-full w-full p-4">
+        <div className="h-full w-full grid">
+            <div className="relative h-full w-full p-4 justify-items-center">
                 {/* Toggle Button */}
                 <button
                     onClick={toggleComponent}

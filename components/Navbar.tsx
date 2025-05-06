@@ -15,7 +15,7 @@ export default function Navbar() {
     >
       {/* Logo Section */}
       <div className="flex items-center gap-2">
-        <Image src="/assets/Logo.png" alt="Logo" width={120} height={40} />
+        <Image src="/assets/sdarlyLogo.svg" alt="Logo" width={120} height={40} />
       </div>
 
       {/* Icon Buttons Section */}
