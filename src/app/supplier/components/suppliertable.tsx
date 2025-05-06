@@ -1,6 +1,11 @@
 import React from "react";
 import SupplierTableItem from "./suppliertableitem";
 import {
+  ivory_paper,
+  white_paper,
+  green_paper,
+} from "../../../../public/assets/index";
+import {
   Table,
   TableBody,
   TableCaption,
@@ -26,7 +31,7 @@ export default function SupplierTable() {
         </TableHeader>
         <TableBody>
           <SupplierTableItem
-            imageUrl={"/images/paper.png"}
+            imageUrl={ivory_paper}
             productName={"Exact Vellum Bristol Paper"}
             size={"8 1/2 x 14"}
             weight={67}
@@ -35,7 +40,7 @@ export default function SupplierTable() {
             status={"Approved"}
           />
           <SupplierTableItem
-            imageUrl={"/images/paper.png"}
+            imageUrl={white_paper}
             productName={"EarthChoice Office Paper"}
             size={"8 1/2 x 11"}
             weight={20}
@@ -44,7 +49,7 @@ export default function SupplierTable() {
             status={"Rejected"}
           />
           <SupplierTableItem
-            imageUrl={"/images/paper.png"}
+            imageUrl={green_paper}
             productName={"Astrobrights Gamma Paper"}
             size={"8 1/2 x 11"}
             weight={60}

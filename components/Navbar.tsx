@@ -1,9 +1,9 @@
 // components/Navbar.tsx
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Bell, User } from 'lucide-react';
-import Image from 'next/image';
+import { useState } from "react";
+import { Bell, User } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [showNotifications, setShowNotifications] = useState(false);
@@ -27,7 +27,7 @@ export default function Navbar() {
         >
           <Bell size={24} />
           <span className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-            12
+            0
           </span>
         </button>
         {showNotifications && (

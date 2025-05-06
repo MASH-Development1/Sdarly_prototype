@@ -1,8 +1,9 @@
 import React from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
-
+import { StaticImageData } from "next/image";
+import Image from "next/image";
 type SupplierTableItemProps = {
-  imageUrl: string;
+  imageUrl: string | StaticImageData;
   productName: string;
   size: string;
   weight: number;
@@ -29,7 +30,7 @@ const SupplierTableItem: React.FC<SupplierTableItemProps> = ({
   return (
     <TableRow>
       <TableCell className="flex items-center gap-2">
-        <img src={imageUrl} />
+        <Image src={imageUrl} alt="product image" width={100} />
         {productName}
       </TableCell>
       <TableCell>{size}</TableCell>
