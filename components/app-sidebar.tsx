@@ -41,8 +41,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="w-64 pt-8 sm:pt-18 bg-gray-800 text-black h-screen flex flex-col justify-end items-center">
-      <SidebarContent className="w-full flex flex-col items-center">
-        <SidebarMenu className="space-y-2">
+      <SidebarContent className="w-full flex flex-col items-center pt-7">
+        <SidebarMenu className="space-y-5">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild>

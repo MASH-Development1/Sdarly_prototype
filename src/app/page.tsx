@@ -3,7 +3,7 @@ import Supplier from "./supplier/page";
 export default function Home() {
   return (
     <>
-      <div className="h-full w-full justify-items-center pt-7">
+      <div className="h-full w-full justify-items-center">
         <Supplier />
       </div>
     </>
