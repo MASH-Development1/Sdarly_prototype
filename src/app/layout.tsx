@@ -29,7 +29,7 @@ export default function RootLayout({
           {/* Navbar */}
           <Navbar />
 
-          <div className="flex">
+          <div className="flex w-full">
             {/* Sidebar */}
             <AppSidebar />
 
@@ -38,8 +38,8 @@ export default function RootLayout({
             {/* Main Content */}
             <main className="flex-1">
               {/*<SidebarTrigger className="absolute top-4 left-4 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 z-50" />*/}
-              {children}</main>
-
+              {children}
+            </main>
           </div>
         </SidebarProvider>
       </body>

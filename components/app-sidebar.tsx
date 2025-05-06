@@ -40,8 +40,8 @@ export function AppSidebar() {
   const [activeItem, setActiveItem] = useState("Home");
 
   return (
-    <Sidebar className="w-64 bg-gray-800 text-black h-screen flex flex-col justify-end items-center">
-      <SidebarContent className="w-full flex flex-col justify-center items-center">
+    <Sidebar className="w-64 pt-8 sm:pt-18 bg-gray-800 text-black h-screen flex flex-col justify-end items-center">
+      <SidebarContent className="w-full flex flex-col items-center">
         <SidebarMenu className="space-y-2">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
