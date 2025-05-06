@@ -32,6 +32,7 @@ export default function RootLayout({
           {/* Sidebar */}
           <AppSidebar />
 
+
           {/* Sidebar Trigger */}
 
           {/* Main Content */}
