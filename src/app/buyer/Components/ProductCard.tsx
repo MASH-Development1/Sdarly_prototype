@@ -1,8 +1,11 @@
 import React from 'react';
 import { Globe, Carrot, ShoppingBag } from 'lucide-react';
+import Image from 'next/image';
+import type { StaticImageData } from "next/image";
+
 
 type ProductCardProps = {
-    imageUrl: string;
+    imageUrl: string | StaticImageData ;
     title: string;
     subtitle: string;
     code: string;
@@ -21,7 +24,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
     return (
         <div className="max-w-md bg-white rounded-2xl shadow-md overflow-hidden">
             <div className="flex">
-                <img src={imageUrl} alt="product" className="w-1/2 object-cover" />
+                <Image src={imageUrl} alt="product" width={120} height={40} className="w-1/2 object-cover" />
                 <div className="w-1/2 p-4 flex flex-col justify-between">
                     <div>
                         <div className="flex gap-2 mb-2">
