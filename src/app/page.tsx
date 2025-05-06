@@ -1,11 +1,35 @@
+"use client";
+
+import { useState } from "react";
 import Buyer from "./buyer/page";
 import Supplier from "./supplier/page";
+import { Icon } from "@iconify/react";
+
 export default function Home() {
-  return (
-    <>
-      <div className="h-full w-full justify-items-center">
-        <Supplier />
-      </div>
-    </>
-  );
+    const [showBuyer, setShowBuyer] = useState(false);
+    const toggleComponent = () => setShowBuyer(!showBuyer);
+
+    return (
+        <div className="h-full w-full grid justify-items-center">
+            <div className="relative h-full w-full p-4">
+                {/* Toggle Button */}
+                <button
+                    onClick={toggleComponent}
+                    className="absolute top-20 right-4 flex flex-col items-center group"
+                    aria-label="Toggle scenario"
+                    title="Toggle scenario"
+                >
+                    <Icon
+                        icon={showBuyer ? "mdi:arrow-left" : "mdi:arrow-right"}
+                        className="text-3xl text-gray-700 hover:text-blue-600 transition"
+                    />
+                    <span className="mt-1 text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition">
+                        Switch between scenarios
+                    </span>
+                </button>
+
+                {showBuyer ? <Buyer key="buyer" /> : <Supplier key="supplier" />}
+            </div>
+        </div>
+    );
 }
