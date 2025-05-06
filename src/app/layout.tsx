@@ -36,8 +36,9 @@ export default function RootLayout({
             {/* Sidebar Trigger */}
 
             {/* Main Content */}
-            <main className="flex-1 p-4">{children}</main>
-            <SidebarTrigger className="absolute top-4 left-4 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 z-50" />
+            <main className="flex-1">
+              {/*<SidebarTrigger className="absolute top-4 left-4 bg-gray-800 text-white p-2 rounded-full hover:bg-gray-700 z-50" />*/}
+              {children}</main>
 
           </div>
         </SidebarProvider>
