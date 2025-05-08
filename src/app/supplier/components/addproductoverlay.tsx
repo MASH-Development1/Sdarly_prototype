@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
 import { Product } from "../page";
+import { v4 as uuidv4 } from "uuid";
 
 type AddProductOverlayProps = {
   onSubmit: (product: Product) => void;
@@ -17,7 +18,14 @@ export default function AddProductOverlay({
 }: AddProductOverlayProps) {
   const [image, setImage] = useState<File | null>(null);
   const [pdfFiles, setPdfFiles] = useState<File[]>([]);
+  const [open, setOpen] = useState(false); // Manage modal open/close internally
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const resetForm = () => {
+    setImage(null);
+    setPdfFiles([]);
+    if (inputRef.current) inputRef.current.value = "";
+  };
 
   const handlePdfDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -43,22 +51,28 @@ export default function AddProductOverlay({
     if (!image) return alert("Please upload a product image");
 
     const newProduct: Product = {
+      id: uuidv4(),
       imageUrl: URL.createObjectURL(image),
       productName: "New Product",
       size: "8 1/2 x 11",
       weight: 60,
       finish: "Uncoated Smooth",
       color: "White",
-      status: "Pending" as "Approved" | "Pending" | "Rejected",
+      status: "Pending",
     };
 
     onSubmit(newProduct);
+    resetForm();
+    setOpen(false); // Close dialog
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="fixed bottom-4 right-4 flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-md shadow hover:bg-blue-100">
+        <button
+          className="fixed bottom-4 right-4 flex items-center gap-2 bg-blue-50 text-blue-700 px-4 py-2 rounded-md shadow hover:bg-blue-100"
+          onClick={resetForm}
+        >
           <div className="bg-blue-700 text-white rounded p-1">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +100,6 @@ export default function AddProductOverlay({
           </DialogTitle>
         </DialogHeader>
 
-        {/* Upload Image */}
         <div>
           <label className="block text-sm font-medium mb-1">
             Upload Picture
@@ -101,7 +114,6 @@ export default function AddProductOverlay({
           )}
         </div>
 
-        {/* Upload PDFs */}
         <div>
           <label className="block mt-6 text-sm font-medium mb-1">
             Upload Certificates & Product Details
@@ -134,7 +146,7 @@ export default function AddProductOverlay({
                   <span className="truncate max-w-[150px]">{file.name}</span>
                 </div>
                 <span className="text-sm text-blue-600 animate-pulse">
-                  Uploading...
+                  Done
                 </span>
               </div>
             ))}

@@ -11,8 +11,9 @@ const statusColorMap: Record<Product["status"], string> = {
 };
 
 const SupplierTableItem: React.FC<
-  Product & { deleteProduct: (productName: string) => void }
+  Product & { deleteProduct: (id: string) => void }
 > = ({
+  id,
   imageUrl,
   productName,
   size,
@@ -47,7 +48,7 @@ const SupplierTableItem: React.FC<
           <div className="flex flex-col items-center">
             <button
               className="bg-red-500 text-white p-2 rounded-full text-sm"
-              onClick={() => deleteProduct(productName)}
+              onClick={() => deleteProduct(id)}
             >
               <Icon icon="mdi:trash-can-outline" width={20} height={20} />
             </button>
