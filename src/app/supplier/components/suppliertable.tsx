@@ -60,28 +60,34 @@ export default function SupplierTable({ products }: SupplierTableProps) {
 
   return (
     <div className="w-full bg-white rounded-2xl shadow-md overflow-hidden">
-      <Table>
-        <TableCaption>A list of your recent uploads.</TableCaption>
-        <TableHeader>
-          <TableRow className="bg-gray-200">
-            <TableHead>Product Name</TableHead>
-            <TableHead>Size</TableHead>
-            <TableHead>Weight</TableHead>
-            <TableHead>Finish</TableHead>
-            <TableHead>Color</TableHead>
-            <TableHead>Status</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {productList.map((product, idx) => (
-            <SupplierTableItem
-              key={idx}
-              {...product}
-              deleteProduct={deleteProduct} // Pass deleteProduct function to each item
-            />
-          ))}
-        </TableBody>
-      </Table>
+      <div className="overflow-x-auto">
+        <Table className="min-w-[1000px]">
+          <TableCaption>A list of your recent uploads.</TableCaption>
+          <TableHeader>
+            <TableRow className="bg-gray-200">
+              <TableHead>Product Name</TableHead>
+              <TableHead>Size</TableHead>
+              <TableHead>Weight</TableHead>
+              <TableHead>Finish</TableHead>
+              <TableHead>Color</TableHead>
+              <TableHead className="whitespace-nowrap px-4 text-left">
+                Status
+              </TableHead>
+
+              <TableHead></TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {productList.map((product, idx) => (
+              <SupplierTableItem
+                key={idx}
+                {...product}
+                deleteProduct={deleteProduct} // Pass deleteProduct function to each item
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </div>
     </div>
   );
 }
