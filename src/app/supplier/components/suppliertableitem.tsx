@@ -44,10 +44,7 @@ const SupplierTableItem: React.FC<
       </TableCell>
       <TableCell>
         {status === "Pending" && (
-          <div className="flex flex-col items-center gap-2">
-            <button className="bg-blue-500 text-white p-2 rounded-full text-sm">
-              <Icon icon="mdi:pencil-outline" width={20} height={20} />
-            </button>
+          <div className="flex flex-col items-center">
             <button
               className="bg-red-500 text-white p-2 rounded-full text-sm"
               onClick={() => deleteProduct(productName)}
