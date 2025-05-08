@@ -1,15 +1,20 @@
-"use client";
-
-import React, { useState, useRef } from "react";
 import {
   Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogHeader,
 } from "@/components/ui/dialog";
+import { useState, useRef } from "react";
+import { Product } from "../page";
 
-export default function AddProductOverlay() {
+type AddProductOverlayProps = {
+  onSubmit: (product: Product) => void;
+};
+
+export default function AddProductOverlay({
+  onSubmit,
+}: AddProductOverlayProps) {
   const [image, setImage] = useState<File | null>(null);
   const [pdfFiles, setPdfFiles] = useState<File[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -32,6 +37,22 @@ export default function AddProductOverlay() {
     if (file && file.type.startsWith("image/")) {
       setImage(file);
     }
+  };
+
+  const handleSubmit = () => {
+    if (!image) return alert("Please upload a product image");
+
+    const newProduct: Product = {
+      imageUrl: URL.createObjectURL(image),
+      productName: "New Product",
+      size: "8 1/2 x 11",
+      weight: 60,
+      finish: "Uncoated Smooth",
+      color: "White",
+      status: "Pending" as "Approved" | "Pending" | "Rejected",
+    };
+
+    onSubmit(newProduct);
   };
 
   return (
@@ -57,6 +78,7 @@ export default function AddProductOverlay() {
           <span className="text-sm font-medium">Add Product</span>
         </button>
       </DialogTrigger>
+
       <DialogContent className="max-w-md w-full rounded-xl">
         <DialogHeader>
           <DialogTitle className="text-center text-xl font-bold">
@@ -101,7 +123,6 @@ export default function AddProductOverlay() {
             />
           </div>
 
-          {/* Uploaded PDFs */}
           <div className="mt-4 space-y-2">
             {pdfFiles.map((file, idx) => (
               <div
@@ -119,6 +140,13 @@ export default function AddProductOverlay() {
             ))}
           </div>
         </div>
+
+        <button
+          onClick={handleSubmit}
+          className="mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Submit
+        </button>
       </DialogContent>
     </Dialog>
   );

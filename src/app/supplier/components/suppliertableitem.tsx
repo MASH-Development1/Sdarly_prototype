@@ -1,24 +1,18 @@
 import React from "react";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { StaticImageData } from "next/image";
 import Image from "next/image";
-type SupplierTableItemProps = {
-  imageUrl: string | StaticImageData;
-  productName: string;
-  size: string;
-  weight: number;
-  finish: string;
-  color: string;
-  status: "Approved" | "Pending" | "Rejected";
-};
+import { Product } from "../page";
+import { Icon } from "@iconify/react"; // Import Iconify component
 
-const statusColorMap: Record<SupplierTableItemProps["status"], string> = {
+const statusColorMap: Record<Product["status"], string> = {
   Approved: "bg-green-500",
   Pending: "bg-yellow-400",
   Rejected: "bg-red-500",
 };
 
-const SupplierTableItem: React.FC<SupplierTableItemProps> = ({
+const SupplierTableItem: React.FC<
+  Product & { deleteProduct: (productName: string) => void }
+> = ({
   imageUrl,
   productName,
   size,
@@ -26,23 +20,37 @@ const SupplierTableItem: React.FC<SupplierTableItemProps> = ({
   finish,
   color,
   status,
+  deleteProduct,
 }) => {
   return (
     <TableRow>
       <TableCell className="flex items-center gap-2">
-        <Image src={imageUrl} alt="product image" width={100} />
+        <Image src={imageUrl} alt="product image" width={100} height={100} />
         {productName}
       </TableCell>
       <TableCell>{size}</TableCell>
       <TableCell>{weight} lb</TableCell>
       <TableCell>{finish}</TableCell>
       <TableCell>{color}</TableCell>
-      <TableCell>
+      <TableCell className="flex items-center">
         <div
           className={`text-white px-3 py-1 rounded-full text-sm font-medium w-fit ${statusColorMap[status]}`}
         >
           {status}
         </div>
+        {status === "Pending" && (
+          <div className="flex flex-col items-center gap-2 ml-3">
+            <button className="bg-blue-500 text-white p-2 rounded-full text-sm">
+              <Icon icon="mdi:pencil-outline" width={20} height={20} />
+            </button>
+            <button
+              className="bg-red-500 text-white p-2 rounded-full text-sm"
+              onClick={() => deleteProduct(productName)} // Call delete function
+            >
+              <Icon icon="mdi:trash-can-outline" width={20} height={20} />
+            </button>
+          </div>
+        )}
       </TableCell>
     </TableRow>
   );
