@@ -3,7 +3,6 @@ import SupplierTableItem from "./suppliertableitem";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableHead,
   TableHeader,
   TableRow,
